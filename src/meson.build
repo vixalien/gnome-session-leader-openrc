@@ -1,5 +1,5 @@
 executable(
-  'gnome-session-openrc',
+  'gnome-session-leader',
   sources: ['leader.vala', 'constants.vala'],
   # include glib
   dependencies: [glib, gio, openrc],
