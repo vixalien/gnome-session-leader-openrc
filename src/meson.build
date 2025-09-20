@@ -4,6 +4,7 @@ executable(
   # include glib
   dependencies: [glib, gio, openrc],
   install: true,
+  install_dir: get_option('prefix') / get_option('libexecdir'),
   vala_args: [
     '--vapidir', meson.current_source_dir() / 'vapi',
     '--pkg', 'posix',
