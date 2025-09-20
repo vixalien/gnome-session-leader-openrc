@@ -34,8 +34,7 @@ static bool export_user_environment (Leader ctx) throws Error {
       continue;
     }
 
-
-    builder.add ("{ss}", "s", entry);
+    builder.add ("s", entry);
   }
   builder.close ();
 
@@ -47,7 +46,7 @@ static bool export_user_environment (Leader ctx) throws Error {
     connection.call_sync ("org.freedesktop.DBus",
                           "/org/freedesktop/DBus",
                           "org.freedesktop.DBus",
-                          "UpdateActivationEnvironment",
+                          "UnsetAndSetEnvironment",
                           builder.end (),
                           null,
                           NO_AUTO_START,
@@ -114,9 +113,7 @@ int main (string[] args) {
 
 
   /* We don't escape the name (i.e. we leave any '-' intact). */
-  var service_name = "gnome-session-%s@%s".printf (
-                                                   Environment.get_variable ("XDG_SESSION_TYPE"),
-                                                   session_name);
+  var service_name = "gnome-session-%s".printf (Environment.get_variable ("XDG_SESSION_TYPE"));
 
   RC.set_user ();
 
